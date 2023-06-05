@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Healthcare Chatbot</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    #chatbox {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .bot-message {
+      background-color: #f1f1f1;
+      text-align: left;
+    }
+
+    .user-message {
+      background-color: #e2f0f9;
+      text-align: right;
+    }
+
+    #user-input {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    #user-input-field {
+      flex: 1 1 auto;
+      width: 100%;
+      max-width: 300px;
+      padding: 5px;
+      margin-bottom: 5px;
+    }
+
+    #send-button {
+      flex: 0 0 auto;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Healthcare Chatbot</h1>
+
+  <div id="chatbox">
+    <div class="message bot-message">
+      <p>Hi, how can I assist you today?</p>
+    </div>
+  </div>
+
+  <div id="user-input">
+    <input type="text" id="user-input-field" placeholder="Type your message...">
+    <button id="send-button">Send</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var sendButton = document.getElementById("send-button");
+      var userInputField = document.getElementById("user-input-field");
+      var chatbox = document.getElementById("chatbox");
+
+      sendButton.addEventListener("click", function() {
+        var userMessage = userInputField.value;
+
+        if (userMessage.trim() === "") {
+          return;
+        }
+
+        // Display user message
+        var userMessageContainer = document.createElement("div");
+        userMessageContainer.className = "message user-message";
+        userMessageContainer.innerHTML = "<p>" + userMessage + "</p>";
+        chatbox.appendChild(userMessageContainer);
+
+        // Process user input and generate bot response
+        var botResponse = getBotResponse(userMessage);
+
+        // Display bot response
+        var botMessageContainer = document.createElement("div");
+        botMessageContainer.className = "message bot-message";
+        botMessageContainer.innerHTML = "<p>" + botResponse + "</p>";
+        chatbox.appendChild(botMessageContainer);
+
+        // Clear input field
+        userInputField.value = "";
+
+        // Scroll to the bottom of the chatbox
+        chatbox.scrollTop = chatbox.scrollHeight;
+      });
+
+      function getBotResponse(userMessage) {
+        // Replace this function with your own chatbot logic
+        var botResponse = "Thank you for your message!";
+
+        return botResponse;
+      }
+    });
+  </script>
+</body>
+</html>
